@@ -3,8 +3,8 @@ CFLAGS=-c -Wall
 
 all: main
 
-main: main.o LinkedList.o Node.o
-	$(CC) main.o LinkedList.o Node.o -o main.out
+main: main.o LinkedList.o Node.o Watch.o
+	$(CC) main.o LinkedList.o Node.o Watch.o -o main.out
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
@@ -14,6 +14,9 @@ LinkedList.o: LinkedList.cpp Node.o
 
 Node.o: Node.cpp
 	$(CC) $(CFLAGS) Node.cpp
+
+Watch.o: Watch.cpp
+	$(CC) $(CFLAGS) Watch.cpp
 
 clean:
 	rm -rf *.o main

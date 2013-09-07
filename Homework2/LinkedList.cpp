@@ -34,7 +34,11 @@ ostream& operator<<(ostream& os, const LinkedList& list)
 {
 	for (Node* n = list.Head; n != nullptr; n = n->GetNext())
 	{
-		os << n->GetValue() << " -> ";
+		os << n->GetValue();
+		if (n->HasNextNode())
+		{
+			os << " -> ";
+		}
 	}
     return os;
 }
