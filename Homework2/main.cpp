@@ -162,14 +162,15 @@ void randomArrayTraversal()
 	}
 }
 
-void strideArrayTraversal(int stride)
+void strideArrayTraversal(unsigned int stride)
 {
-	createFile("array_stride_" + to_string(stride));
+	string name = "array_stride_" + to_string(stride);
+	createFile(name);
 
 	while (GlobalEnd <= GlobalLimit)
 	{
 		int* array = createArray(GlobalEnd, stride);
-		arrayTraversal(array, GlobalEnd, "array_stride_" + stride);
+		arrayTraversal(array, GlobalEnd, name);
 
 		GlobalStart = GlobalEnd;
 		GlobalEnd *= 2;
@@ -185,10 +186,10 @@ int main(void)
 	init();
 
 	strideArrayTraversal(0);
-	int limit = pow(2, 20);
-	for (int i = 2; i < limit; i++)
+	for (int i = 1; i < 20; i++)
 	{
-		strideArrayTraversal(i);
+		init();
+		strideArrayTraversal(1 << i);
 	}
 
 	return 0;
