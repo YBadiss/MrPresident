@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include "Watch.h"
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
@@ -16,6 +17,10 @@ int main(void)
 	int nb_loop = 100;
 
 	double elapsed = 0;
+
+	ofstream outFile("results", ios::out);
+	outFile << "power_of_2;time_traversing_list;time_per_node;" << endl;
+	outFile.close();
 
 	while(end <= limit)
 	{
@@ -38,10 +43,16 @@ int main(void)
 			{
 
 			}
+			if (no_iteration >= 25) break;
 		}
-		elapsed = time_watch.ElapsedTime();
-		cout << "\tList traversed in " << elapsed / nb_loop << " seconds\n";
-		cout << "\tTime per element is " << (elapsed / nb_loop) / end << " seconds\n";
+		elapsed = (double) (time_watch.ElapsedTime() / (double)((no_iteration >= 25) ? 1 : nb_loop));
+
+		ofstream outFile("results", ios::out | ios::app);
+		outFile << no_iteration << ";" << elapsed << ";" << elapsed/end << ";" << endl;
+		outFile.close();
+
+		cout << "\tList traversed in " << elapsed << " seconds\n";
+		cout << "\tTime per element is " << elapsed / end << " seconds\n";
 
 		start = end;
 		end *= 2;
