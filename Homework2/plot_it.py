@@ -1,10 +1,13 @@
 import pylab as pl
 import glob
 
+i = 0
+
 for filename in glob.glob("./*.csv"):
 	pow = []
 	tot_time = []
 	rel_time = []
+	i += 1
 	with open(filename, 'r') as f:
 		items = f.readline().split(";")
 		# print items[0], items[1], items[2]
@@ -16,12 +19,14 @@ for filename in glob.glob("./*.csv"):
 
 	pl.plot(
 	        # tot_time, pow, 'r', 
-	        pow, tot_time, 'g')
+	        pow, rel_time)
 	pl.xlabel('Node count')
 	pl.ylabel('Time (s)')
 	pl.xscale('log')
-	pl.yscale('log')
+	# pl.yscale('log')
 	# pl.legend(('Total time', 'Time per node'),loc = 'lower right')
 	pl.title(filename)
-	pl.show()
+	# pl.show()
+	pl.savefig(filename + '.png')
+	pl.clf()
 
