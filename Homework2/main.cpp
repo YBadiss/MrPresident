@@ -12,7 +12,6 @@ unsigned int GlobalStart;
 unsigned int GlobalEnd;
 unsigned int GlobalLimit;
 unsigned int GlobalNoIteration;
-unsigned int GlobalNbLoop;
 double GlobalElapsed;
 
 Watch time_watch;
@@ -23,20 +22,19 @@ void init()
 	GlobalEnd = pow(2,5);
 	GlobalLimit = pow(2,28);
 	GlobalNoIteration = 5;
-	GlobalNbLoop = 100;
 	GlobalElapsed = 0;
 }
 
 void createFile(string name)
 {
-	ofstream outFile("results_" + name, ios::out);
+	ofstream outFile("results_" + name + ".csv", ios::out);
 	outFile << "power_of_2;time_traversing_list;time_per_node;" << endl;
 	outFile.close();
 }
 
 void writeResults(string name)
 {
-	ofstream outFile("results_" + name, ios::out | ios::app);
+	ofstream outFile("results_" + name + ".csv", ios::out | ios::app);
 	outFile << GlobalNoIteration << ";" << GlobalElapsed << ";" << GlobalElapsed / GlobalEnd << ";" << endl;
 	outFile.close();
 } 
@@ -88,8 +86,7 @@ void arrayTraversal(int* array, unsigned int size, string name)
 
 	time_watch.StartWatch();
 	
-	//double nbLoop = pow(2,28-GlobalNoIteration);
-	double nbLoop = 10;
+	double nbLoop = pow(2,28-GlobalNoIteration);
 	for (unsigned int j = 0; j < nbLoop; j++)
 	{
 		for (int i = 0; array[i] != -1; i = array[i])
@@ -104,49 +101,10 @@ void arrayTraversal(int* array, unsigned int size, string name)
 	cout << "\tTime per element is " << GlobalElapsed / size << " seconds\n";
 }
 
-void listTraversal()
-{
-	LinkedList list;
-
-	createFile("list");
-	while(GlobalEnd <= GlobalLimit)
-	{
-		cout << "2^" << GlobalNoIteration << " = " << GlobalEnd << " :\n";
-
-		time_watch.StartWatch();
-		for(unsigned int i = GlobalStart; i < GlobalEnd; i++)
-		{
-			list.AddNode(0);
-		}
-		GlobalElapsed = time_watch.ElapsedTime();
-		cout << "\tList built in " << GlobalElapsed << " seconds\n";
-
-		// cout << list << endl;
-
-		time_watch.StartWatch();
-		for (unsigned int j = 0; j < GlobalNbLoop; j++)
-		{
-			for (Node* n = list.GetHead(); n != nullptr; n = n->GetNext())
-			{
-
-			}
-			if (GlobalNoIteration >= 25) break;
-		}
-		GlobalElapsed = (double) (time_watch.ElapsedTime() / (double)((GlobalNoIteration >= 25) ? 1 : GlobalNbLoop));
-
-		writeResults("list");
-
-		cout << "\tList traversed in " << GlobalElapsed << " seconds\n";
-		cout << "\tTime per element is " << GlobalElapsed / GlobalEnd << " seconds\n";
-
-		GlobalStart = GlobalEnd;
-		GlobalEnd *= 2;
-		GlobalNoIteration++;
-	}
-}
 
 void randomArrayTraversal()
 {
+	init();
 	createFile("array_rand");
 
 	while (GlobalEnd <= GlobalLimit)
@@ -164,6 +122,7 @@ void randomArrayTraversal()
 
 void strideArrayTraversal(unsigned int stride)
 {
+	init();
 	string name = "array_stride_" + to_string(stride);
 	createFile(name);
 
@@ -180,17 +139,60 @@ void strideArrayTraversal(unsigned int stride)
 	}
 }
 
+void listTraversal()
+{
+	init();
+	LinkedList list;
+
+	createFile("list");
+	while(GlobalEnd <= GlobalLimit)
+	{
+		cout << "2^" << GlobalNoIteration << " = " << GlobalEnd << " :\n";
+
+		time_watch.StartWatch();
+		for(unsigned int i = GlobalStart; i < GlobalEnd; i++)
+		{
+			list.AddNode(0);
+		}
+		GlobalElapsed = time_watch.ElapsedTime();
+		cout << "\tList built in " << GlobalElapsed << " seconds\n";
+
+		time_watch.StartWatch();
+		double nbLoop = pow(2,28-GlobalNoIteration);
+		for (unsigned int j = 0; j < nbLoop; j++)
+		{
+			for (Node* n = list.GetHead(); n != nullptr; n = n->GetNext())
+			{
+
+			}
+		}
+		GlobalElapsed = (double) (time_watch.ElapsedTime() / nbLoop);
+
+		writeResults("list");
+
+		cout << "\tList traversed in " << GlobalElapsed << " seconds\n";
+		cout << "\tTime per element is " << GlobalElapsed / GlobalEnd << " seconds\n";
+
+		GlobalStart = GlobalEnd;
+		GlobalEnd *= 2;
+		GlobalNoIteration++;
+	}
+}
+
 int main(void)
 {
 	srand (time(NULL));
-	init();
 
-	strideArrayTraversal(0);
-	for (int i = 1; i < 20; i++)
-	{
-		init();
-		strideArrayTraversal(1 << i);
-	}
+	// Regular array
+	// strideArrayTraversal(0);
+	// for (int i = 1; i < 20; i++)
+	// {
+	// 	// Srided array by 2^i
+	// 	strideArrayTraversal(1 << i);
+	// }
+
+	// Random array
+	randomArrayTraversal();
 
 	return 0;
 }
