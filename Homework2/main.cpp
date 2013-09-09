@@ -32,10 +32,10 @@ void createFile(string name)
 	outFile.close();
 }
 
-void writeResults(string name)
+void writeResults(string name, unsigned int iteration, unsigned int size)
 {
 	ofstream outFile("results_" + name + ".csv", ios::out | ios::app);
-	outFile << GlobalNoIteration << ";" << GlobalElapsed << ";" << GlobalElapsed / GlobalEnd << ";" << endl;
+	outFile << iteration << ";" << GlobalElapsed << ";" << GlobalElapsed / size << ";" << endl;
 	outFile.close();
 } 
 
@@ -84,9 +84,10 @@ void arrayTraversal(int* array, unsigned int size, string name)
 {
 	cout << "2^" << GlobalNoIteration << " = " << GlobalEnd << " :\n";
 
-	time_watch.StartWatch();
 	
 	double nbLoop = pow(2,28-GlobalNoIteration);
+
+	time_watch.StartWatch();
 	for (unsigned int j = 0; j < nbLoop; j++)
 	{
 		for (int i = 0; array[i] != -1; i = array[i])
@@ -95,12 +96,11 @@ void arrayTraversal(int* array, unsigned int size, string name)
 	}
 	GlobalElapsed = (double) (time_watch.ElapsedTime() / nbLoop);
 
-	writeResults(name);
+	writeResults(name, GlobalNoIteration, size);
 
 	cout << "\tArray traversed in " << GlobalElapsed << " seconds\n";
 	cout << "\tTime per element is " << GlobalElapsed / size << " seconds\n";
 }
-
 
 void randomArrayTraversal()
 {
@@ -139,12 +139,43 @@ void strideArrayTraversal(unsigned int stride)
 	}
 }
 
+void singleSizeStrideArrayTraversal(unsigned int size)
+{
+	init();
+	string name = "array_stride_single";
+	createFile(name);
+
+	for (int power = 1; power < 20; power++)
+	{
+		unsigned int stride = 1 << power;
+		unsigned int nbLoop = 10;
+		int* array = createArray(size, stride);
+		cout << "2^" << power << " = " << stride << " :\n";
+
+		time_watch.StartWatch();
+		for (unsigned int j = 0; j < nbLoop; j++)
+		{
+			for (int i = 0; array[i] != -1; i = array[i])
+			{
+			}
+		}
+		GlobalElapsed = (double) (time_watch.ElapsedTime() / nbLoop);
+
+		writeResults(name, power, size);
+
+		cout << "\tArray traversed in " << GlobalElapsed << " seconds\n";
+		cout << "\tTime per element is " << GlobalElapsed / size << " seconds\n";
+		delete array;
+	}
+}
+
 void listTraversal()
 {
 	init();
 	LinkedList list;
+	string name = "list";
 
-	createFile("list");
+	createFile(name);
 	while(GlobalEnd <= GlobalLimit)
 	{
 		cout << "2^" << GlobalNoIteration << " = " << GlobalEnd << " :\n";
@@ -168,7 +199,7 @@ void listTraversal()
 		}
 		GlobalElapsed = (double) (time_watch.ElapsedTime() / nbLoop);
 
-		writeResults("list");
+		writeResults(name, GlobalNoIteration, GlobalEnd);
 
 		cout << "\tList traversed in " << GlobalElapsed << " seconds\n";
 		cout << "\tTime per element is " << GlobalElapsed / GlobalEnd << " seconds\n";
@@ -183,8 +214,10 @@ int main(void)
 {
 	srand (time(NULL));
 
+	singleSizeStrideArrayTraversal(1 << 25);
+
 	// list
-	listTraversal();
+	// listTraversal();
 
 	// Regular array
 	strideArrayTraversal(0);
@@ -199,4 +232,3 @@ int main(void)
 
 	return 0;
 }
-
