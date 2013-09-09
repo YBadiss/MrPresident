@@ -183,7 +183,10 @@ int main(void)
 {
 	srand (time(NULL));
 
-	Regular array
+	// list
+	listTraversal();
+
+	// Regular array
 	strideArrayTraversal(0);
 	for (int i = 1; i < 20; i++)
 	{
@@ -191,7 +194,7 @@ int main(void)
 		strideArrayTraversal(1 << i);
 	}
 
-	Random array
+	// Random array
 	randomArrayTraversal();
 
 	return 0;
