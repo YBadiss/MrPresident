@@ -22,7 +22,7 @@ for filename in glob.glob("./*.csv"):
 	        pow, rel_time)
 	pl.xlabel('Node count')
 	pl.ylabel('Time (s)')
-	pl.xscale('log')
+	pl.xscale('log',basex=2)
 	# pl.yscale('log')
 	# pl.legend(('Total time', 'Time per node'),loc = 'lower right')
 	pl.title(filename)
