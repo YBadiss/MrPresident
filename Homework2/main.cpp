@@ -183,15 +183,15 @@ int main(void)
 {
 	srand (time(NULL));
 
-	// Regular array
-	// strideArrayTraversal(0);
-	// for (int i = 1; i < 20; i++)
-	// {
-	// 	// Srided array by 2^i
-	// 	strideArrayTraversal(1 << i);
-	// }
+	Regular array
+	strideArrayTraversal(0);
+	for (int i = 1; i < 20; i++)
+	{
+		// Srided array by 2^i
+		strideArrayTraversal(1 << i);
+	}
 
-	// Random array
+	Random array
 	randomArrayTraversal();
 
 	return 0;
