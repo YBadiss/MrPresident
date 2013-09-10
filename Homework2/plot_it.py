@@ -1,13 +1,18 @@
 import pylab as pl
 import glob
 
-i = 0
+files = [
+	("results.csv", "List"),
+	("results_array_stride_0.csv", "Normal array"),
+	("results_array_stride_2.csv", "2-strided array"),
+	("results_array_stride_4.csv", "4-strided array"),
+	("results_array_stride_8.csv", "8-strided array")
+]
 
-for filename in glob.glob("./*.csv"):
+for filename, title in files:
 	pow = []
 	tot_time = []
 	rel_time = []
-	i += 1
 	with open(filename, 'r') as f:
 		items = f.readline().split(";")
 		# print items[0], items[1], items[2]
@@ -23,10 +28,8 @@ for filename in glob.glob("./*.csv"):
 	pl.xlabel('Node count')
 	pl.ylabel('Time (s)')
 	pl.xscale('log',basex=2)
-	# pl.yscale('log')
-	# pl.legend(('Total time', 'Time per node'),loc = 'lower right')
-	pl.title(filename)
-	# pl.show()
-	pl.savefig(filename + '.png')
-	pl.clf()
+	pl.title(title)
+
+	# pl.savefig(filename + '.png')
+pl.clf()
 
