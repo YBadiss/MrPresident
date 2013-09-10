@@ -18,5 +18,11 @@ Node.o: Node.cpp
 Watch.o: Watch.cpp
 	$(CC) $(CFLAGS) Watch.cpp
 
+test: test.o
+	$(CC) test.o -o test.out
+
+test.o: test.cpp
+	$(CC) $(CFLAGS) test.cpp
+
 clean:
-	rm -rf *.o main
+	rm -rf *.o main.out test.out
