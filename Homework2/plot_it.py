@@ -2,11 +2,12 @@ import pylab as pl
 import glob
 
 files = [
-	("results.csv", "List"),
-	("results_array_stride_0.csv", "Normal array"),
-	("results_array_stride_2.csv", "2-strided array"),
-	("results_array_stride_4.csv", "4-strided array"),
-	("results_array_stride_8.csv", "8-strided array")
+	("results_list.csv", "List"),
+	("results_array_stride_1.csv", "Normal array"),
+	("results_array_stride_16.csv", "16-strided array"),
+	("results_array_stride_32.csv", "32-strided array"),
+	("results_array_stride_64.csv", "64-strided array"),
+	("results_array_rand.csv", "Random array")
 ]
 
 for filename, title in files:
@@ -21,6 +22,7 @@ for filename, title in files:
 			pow.append(2 ** int(items[0]))
 			tot_time.append(float(items[1]))
 			rel_time.append(float(items[2]))
+	
 
 	pl.plot(
 	        # tot_time, pow, 'r', 
@@ -28,8 +30,10 @@ for filename, title in files:
 	pl.xlabel('Node count')
 	pl.ylabel('Time (s)')
 	pl.xscale('log',basex=2)
-	pl.title(title)
 
-	# pl.savefig(filename + '.png')
+pl.title("Evolution of the average access time")
+
+pl.legend([title for filename,title in files], loc="upper left")
+pl.savefig('plot.png')
 pl.clf()
 

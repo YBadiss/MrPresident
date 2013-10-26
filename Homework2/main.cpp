@@ -42,11 +42,13 @@ void writeResults(string name, unsigned int iteration, unsigned int size)
 int* createArray(unsigned int size, unsigned int stride = 0)
 {
 	int* array = new int[size];
-	int value = stride + 1;
+	int value = stride;
 	for(unsigned int i = 1; i < size; i++)
 	{
-		value = value % size;
-		if (value == 0) value = 1;
+		if (value >= size)
+		{
+			value = 1;
+		}
 		array[i-1] = value++;
 	}
 	array[size-1] = -1;
@@ -139,36 +141,6 @@ void strideArrayTraversal(unsigned int stride)
 	}
 }
 
-void singleSizeStrideArrayTraversal(unsigned int size)
-{
-	init();
-	string name = "array_stride_single";
-	createFile(name);
-
-	for (int power = 1; power < 20; power++)
-	{
-		unsigned int stride = 1 << power;
-		unsigned int nbLoop = 10;
-		int* array = createArray(size, stride);
-		cout << "2^" << power << " = " << stride << " :\n";
-
-		time_watch.StartWatch();
-		for (unsigned int j = 0; j < nbLoop; j++)
-		{
-			for (int i = 0; array[i] != -1; i = array[i])
-			{
-			}
-		}
-		GlobalElapsed = (double) (time_watch.ElapsedTime() / nbLoop);
-
-		writeResults(name, power, size);
-
-		cout << "\tArray traversed in " << GlobalElapsed << " seconds\n";
-		cout << "\tTime per element is " << GlobalElapsed / size << " seconds\n";
-		delete array;
-	}
-}
-
 void listTraversal()
 {
 	init();
@@ -214,21 +186,19 @@ int main(void)
 {
 	srand (time(NULL));
 
-	singleSizeStrideArrayTraversal(1 << 25);
-
 	// list
-	// listTraversal();
+	listTraversal();
 
 	// Regular array
-	strideArrayTraversal(0);
-	for (int i = 1; i < 20; i++)
-	{
-		// Srided array by 2^i
-		strideArrayTraversal(1 << i);
-	}
+	// strideArrayTraversal(1);
+	// for (int i = 1; i < 20; i++)
+	// {
+	// 	// Srided array by 2^i
+	// 	strideArrayTraversal(1 << i);
+	// }
 
-	// Random array
-	randomArrayTraversal();
+	// // Random array
+	// randomArrayTraversal();
 
 	return 0;
 }
