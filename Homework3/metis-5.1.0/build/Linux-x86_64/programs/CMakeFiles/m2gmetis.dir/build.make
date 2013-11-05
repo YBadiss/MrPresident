@@ -34,14 +34,11 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# Escaping for special characters.
-EQUALS = =
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0
+CMAKE_SOURCE_DIR = /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64
+CMAKE_BINARY_DIR = /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64
 
 # Include any dependencies generated for this target.
 include programs/CMakeFiles/m2gmetis.dir/depend.make
@@ -54,17 +51,17 @@ include programs/CMakeFiles/m2gmetis.dir/flags.make
 
 programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o: programs/CMakeFiles/m2gmetis.dir/flags.make
 programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o: ../../programs/m2gmetis.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/m2gmetis.c.o   -c /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/m2gmetis.c.o   -c /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c
 
 programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/m2gmetis.dir/m2gmetis.c.i"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c > CMakeFiles/m2gmetis.dir/m2gmetis.c.i
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c > CMakeFiles/m2gmetis.dir/m2gmetis.c.i
 
 programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/m2gmetis.dir/m2gmetis.c.s"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c -o CMakeFiles/m2gmetis.dir/m2gmetis.c.s
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/m2gmetis.c -o CMakeFiles/m2gmetis.dir/m2gmetis.c.s
 
 programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o.requires:
 .PHONY : programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o.requires
@@ -77,17 +74,17 @@ programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o.provides.build: programs/CMakeFile
 
 programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o: programs/CMakeFiles/m2gmetis.dir/flags.make
 programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o: ../../programs/cmdline_m2gmetis.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o   -c /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o   -c /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c
 
 programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.i"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c > CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.i
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c > CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.i
 
 programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.s"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c -o CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.s
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/cmdline_m2gmetis.c -o CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.s
 
 programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o.requires:
 .PHONY : programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o.requires
@@ -100,17 +97,17 @@ programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o.provides.build: programs/C
 
 programs/CMakeFiles/m2gmetis.dir/io.c.o: programs/CMakeFiles/m2gmetis.dir/flags.make
 programs/CMakeFiles/m2gmetis.dir/io.c.o: ../../programs/io.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object programs/CMakeFiles/m2gmetis.dir/io.c.o"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/io.c.o   -c /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/io.c
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/m2gmetis.dir/io.c.o   -c /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/io.c
 
 programs/CMakeFiles/m2gmetis.dir/io.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/m2gmetis.dir/io.c.i"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/io.c > CMakeFiles/m2gmetis.dir/io.c.i
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/io.c > CMakeFiles/m2gmetis.dir/io.c.i
 
 programs/CMakeFiles/m2gmetis.dir/io.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/m2gmetis.dir/io.c.s"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/io.c -o CMakeFiles/m2gmetis.dir/io.c.s
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && /usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/io.c -o CMakeFiles/m2gmetis.dir/io.c.s
 
 programs/CMakeFiles/m2gmetis.dir/io.c.o.requires:
 .PHONY : programs/CMakeFiles/m2gmetis.dir/io.c.o.requires
@@ -133,11 +130,11 @@ m2gmetis_EXTERNAL_OBJECTS =
 programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/m2gmetis.c.o
 programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/cmdline_m2gmetis.c.o
 programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/io.c.o
-programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/build.make
 programs/m2gmetis: libmetis/libmetis.a
+programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/build.make
 programs/m2gmetis: programs/CMakeFiles/m2gmetis.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable m2gmetis"
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/m2gmetis.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/m2gmetis.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 programs/CMakeFiles/m2gmetis.dir/build: programs/m2gmetis
@@ -149,10 +146,10 @@ programs/CMakeFiles/m2gmetis.dir/requires: programs/CMakeFiles/m2gmetis.dir/io.c
 .PHONY : programs/CMakeFiles/m2gmetis.dir/requires
 
 programs/CMakeFiles/m2gmetis.dir/clean:
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && $(CMAKE_COMMAND) -P CMakeFiles/m2gmetis.dir/cmake_clean.cmake
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs && $(CMAKE_COMMAND) -P CMakeFiles/m2gmetis.dir/cmake_clean.cmake
 .PHONY : programs/CMakeFiles/m2gmetis.dir/clean
 
 programs/CMakeFiles/m2gmetis.dir/depend:
-	cd /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0 /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64 /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs/CMakeFiles/m2gmetis.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0 /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64 /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs/CMakeFiles/m2gmetis.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : programs/CMakeFiles/m2gmetis.dir/depend
 

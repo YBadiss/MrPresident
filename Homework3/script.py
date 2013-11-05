@@ -29,16 +29,16 @@ def getOptions(i, options, cmd):
 # }
 
 options = {
-	"-ctype" : ["shem"],
+	"-ctype" : ["rm"],
 	"-objtype" : ["cut"],
 	"-no2hop" : [True],
 	"-contig" : [False],
-	"-minconn" : [False],
-	"-ufactor": ["1.04","1.05","1.10"]
+	"-minconn" : [True],
+	"-ufactor": ["100","200","300","500","900","1500"]
 }
 
 #graphFiles = ["graphA.gr","graphB.gr","graphC.gr"]
-graphFiles = ["graphA.gr"]
+graphFiles = ["graphC.gr"]
 
 for graph in graphFiles:
 	print graph + " ... "
