@@ -1,0 +1,36 @@
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Oct 26 2013, 11:32:08)
+ size of idx_t: 64bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: graphA.gr, #Vertices: 264346, #Edges: 365050, #Parts: 64
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=rm, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=YES, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 1846, communication volume: 3604.
+
+ - Balance:
+     constraint #0:  1.028 out of 0.000
+
+ - Most overweight partition:
+     pid: 62, actual: 4244, desired: 4130, ratio: 1.03.
+
+ - Subdomain connectivity: max: 8, min: 2, avg: 4.62
+
+ - There are 13 non-contiguous partitions.
+   Total components after removing the cut edges: 80,
+   max components: 3 for pid: 35.
+
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.108 sec
+  Partitioning: 		   0.244 sec   (METIS time)
+  Reporting:    		   0.060 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		  43.697 MB
+******************************************************************************

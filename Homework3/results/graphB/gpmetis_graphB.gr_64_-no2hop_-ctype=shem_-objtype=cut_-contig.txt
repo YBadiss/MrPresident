@@ -1,0 +1,36 @@
+***The input graph is not contiguous.
+***The specified -contig option will be ignored.
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Oct 26 2013, 11:32:08)
+ size of idx_t: 64bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: graphB.gr, #Vertices: 262144, #Edges: 1048576, #Parts: 64
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=YES, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 686660, communication volume: 1334798.
+
+ - Balance:
+     constraint #0:  1.002 out of 0.000
+
+ - Most overweight partition:
+     pid: 17, actual: 4103, desired: 4096, ratio: 1.00.
+
+ - Subdomain connectivity: max: 63, min: 63, avg: 63.00
+
+ - The original graph had 99 connected components and the resulting
+   partitioning after removing the cut edges has 180 components.
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.260 sec
+  Partitioning: 		  11.272 sec   (METIS time)
+  Reporting:    		   0.556 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		 260.066 MB
+******************************************************************************
