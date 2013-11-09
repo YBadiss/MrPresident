@@ -20,16 +20,25 @@ def getOptions(i, options, cmd):
 				appendCmd = [key + "=" + val]
 			getOptions(i+1, options, cmd + appendCmd)
 
+# options = {
+# 	"-ctype" : ["rm","shem"],
+# 	"-objtype" : ["cut","vol"],
+# 	"-no2hop" : [True,False],
+# 	"-contig" : [True,False],
+# 	"-minconn" : [True,False]
+# }
+
 options = {
-	"-ctype" : ["rm","shem"],
-	"-objtype" : ["cut","vol"],
-	"-no2hop" : [True,False],
-	"-contig" : [True,False],
-	"-minconn" : [True,False]
+	"-ctype" : ["rm"],
+	"-objtype" : ["cut"],
+	"-no2hop" : [True],
+	"-contig" : [False],
+	"-minconn" : [True],
+	"-ufactor": ["100","200","300","500","900","1500"]
 }
 
-graphFiles = ["graphA.gr","graphB.gr","graphC.gr"]
-
+#graphFiles = ["graphA.gr","graphB.gr","graphC.gr"]
+graphFiles = ["graphC.gr"]
 
 for graph in graphFiles:
 	print graph + " ... "

@@ -1,4 +1,4 @@
-# Install script for directory: /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/include
+# Install script for directory: /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/include
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,6 +33,6 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/include/metis.h")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/include/metis.h")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

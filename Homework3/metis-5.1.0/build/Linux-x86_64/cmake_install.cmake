@@ -1,4 +1,4 @@
-# Install script for directory: /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0
+# Install script for directory: /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,9 +34,9 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/include/cmake_install.cmake")
-  INCLUDE("/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/libmetis/cmake_install.cmake")
-  INCLUDE("/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs/cmake_install.cmake")
+  INCLUDE("/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/include/cmake_install.cmake")
+  INCLUDE("/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/libmetis/cmake_install.cmake")
+  INCLUDE("/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/programs/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 
@@ -46,7 +46,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
-FILE(WRITE "/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/build/Linux-x86_64/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

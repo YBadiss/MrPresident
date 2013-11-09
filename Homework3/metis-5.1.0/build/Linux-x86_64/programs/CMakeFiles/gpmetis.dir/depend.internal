@@ -23,18 +23,18 @@ programs/CMakeFiles/gpmetis.dir/cmdline_gpmetis.c.o
  ../../GKlib/ms_stat.h
  ../../GKlib/ms_stdint.h
  ../../include/metis.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/cmdline_gpmetis.c
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/cmdline_gpmetis.c
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/struct.h
 programs/CMakeFiles/gpmetis.dir/gpmetis.c.o
  ../../GKlib/GKlib.h
  ../../GKlib/gk_arch.h
@@ -57,18 +57,18 @@ programs/CMakeFiles/gpmetis.dir/gpmetis.c.o
  ../../GKlib/ms_stat.h
  ../../GKlib/ms_stdint.h
  ../../include/metis.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/gpmetis.c
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/gpmetis.c
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/struct.h
 programs/CMakeFiles/gpmetis.dir/io.c.o
  ../../GKlib/GKlib.h
  ../../GKlib/gk_arch.h
@@ -91,18 +91,18 @@ programs/CMakeFiles/gpmetis.dir/io.c.o
  ../../GKlib/ms_stat.h
  ../../GKlib/ms_stdint.h
  ../../include/metis.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/io.c
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/io.c
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/struct.h
 programs/CMakeFiles/gpmetis.dir/stat.c.o
  ../../GKlib/GKlib.h
  ../../GKlib/gk_arch.h
@@ -125,15 +125,15 @@ programs/CMakeFiles/gpmetis.dir/stat.c.o
  ../../GKlib/ms_stat.h
  ../../GKlib/ms_stdint.h
  ../../include/metis.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/defs.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/proto.h
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/stat.c
- /home/yacine/Documents/cse_algo/MrPresident/Homework3/metis-5.1.0/programs/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/gklib_rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/macros.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/rename.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/../libmetis/struct.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/defs.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/metisbin.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/proto.h
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/stat.c
+ /home/ubuntu/Documents/MrPresident/Homework3/metis-5.1.0/programs/struct.h
