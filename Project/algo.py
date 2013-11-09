@@ -6,17 +6,13 @@ import networkx as nx
 import copy
 import matplotlib.pyplot as plt
 
+import pdb
+
 class Node:
 	tr = 5
-	h = 5
-	d = 2
-	p = 1000
-
-	@staticmethod
-	def get_next_id():
-		id = Node.global_id
-		Node.id += 1
-		return id
+	h = 20
+	d = 0
+	p = 100000
 
 	def __init__(self, id):
 		self.id = id
@@ -31,7 +27,7 @@ class Node:
 		self.H.append(node_j.c)
 
 	def do_relabel(self, a, b):
-		if random.random() > 1.0/Node.p:
+		if random.random() < 1/Node.p:
 			a[self.id] = self.c
 			b[self.id] = self.id
 			self.c = self.id
@@ -105,6 +101,28 @@ def find_community(node_i, node_j):
 	# end if
 	node_i.update_relabel()
 
+def create_community(G, min, max):
+	for i in range(min,max+1):
+		j = random.randint(min,max)
+		if j >= i:
+			j = j + 1 if j < max else min
+		G.add_edges_from([(i, j)])
+	for k in range(10000):
+		i = random.randint(min,max)
+		j = random.randint(min,max)
+		if j >= i:
+			j = j + 1 if j < max else min
+		G.add_edges_from([(i, j)])
+
+def create_join(size):
+	G = nx.Graph()
+	print G.nodes()
+	create_community(G, 1, size/2)
+	print G.nodes()
+	create_community(G, size/2 + 1, size)
+	print G.nodes()
+	return G
+
 # Set ci = i ∀ i {Initialize each node’s community to be its ID}
 # Set Hi = {i} ∀ i {Initialize each node’s history to a meeting with itself}
 # Set ri = F alse ∀ i {Initialize relabeling flag to F alse for all nodes}
@@ -112,23 +130,33 @@ def find_community(node_i, node_j):
 # List of nodes
 
 #random.seed(0)
-G = nx.read_gml('karate.gml')
+# G = nx.read_gml('jazz.net')
+# G = create_join(100)
+G = nx.read_graphml("karate.GraphML")
 E = copy.deepcopy(G.edges())
-V = [Node(i-1) for i in G.nodes()]
+V = {n:Node(n) for n in G.nodes()}
 random.shuffle(E)
 
-a = [0 for i in range(len(E))]
-b = [0 for i in range(len(E))]
+a = {n:0 for n in G.nodes()}
+b = {n:0 for n in G.nodes()}
 
 for t in xrange(len(G)):
-	for (i,j) in E:
+	for (n,m) in E:
 		if random.random() > 0.5:
-			find_community(V[i-1],V[j-1])
+			find_community(V[n],V[m])
 		else:
-			find_community(V[j-1],V[i-1])
+			find_community(V[m],V[n])
 
-nx.draw(G, None, labels={node.id+1:node.c for node in V})
-plt.show()
+# nx.draw(G, None, labels={node.id+1:node.c for node in V})
+
+for node in G.node.keys():
+	G.node[node]['label'] = V[node].c
+
+nx.write_gexf(G, "karate.gexf")
+
+# pos = nx.draw(G, None, labels={node.id:node.c for node in V.values()})
+# nx.draw_networkx(G)
+# plt.show()
 
 # for t in {0, 1, ..., T } do
 # 	for (i, j) in Et do
