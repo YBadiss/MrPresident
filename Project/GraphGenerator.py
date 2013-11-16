@@ -3,6 +3,8 @@ import random
 import bisect
 import copy
 import matplotlib.pyplot as plt
+import SegmentTree as st
+import pdb
 
 class Graph:
 	@staticmethod
@@ -20,51 +22,127 @@ class Graph:
 		return flattened_distrib
 
 	def __init__(self, is_directed=False):
-		# create the graph with networkx
-		self.__G = nx.DiGraph() if is_directed else nx.Graph()
-		self.__nodes_time_index = SegmentTree()
-		self.__nodes_to_intervals = {}
-		self.__edges_time_index = SegmentTree()
-		self.__edges_to_intervals = {}
+		self.__is_directed = is_directed
+		self.__nodes_time_index = st.SegmentTree()
+		self.__nodes_data = {} # key = node_id ; value = {interval, metadata, edges_ids}
+		self.__edges_time_index = st.SegmentTree()
+		self.__edges_data = {} # key = edge_id ; value = {interval, metadata, src, dest}
+		self.__edge_count = 0
+		self.__node_count = 0
+		self.__event_times = set()
 
 	def __flatten_matrix_distrib(self, cross_set_distribs):
 		flattened = []
 		for i in range(len(cross_set_distribs)):
 			for j in range(len(cross_set_distribs)):
-				if self.__G.is_directed() or (j >= i):
+				if self.__is_directed or (j >= i):
 					flattened.append(cross_set_distribs[i][j])
 				else:
 					flattened.append(0)
 		return flattened
 
-	def create_nodes(self, node_count, t=0):
-		return self.create_nodes_attr([{} for i in range(node_count)], t)
+	def create_nodes(self, node_count, start=0):
+		return self.create_nodes_metadata([{} for i in range(node_count)], start)
 
-	def create_nodes_attr(self, nodes_attr, t=0):
+	def create_nodes_metadata(self, nodes_metadata, start=0):
 		"""
 			Creates nodes with the attributes contained in nodes_attr.
 			Returns a list of ids of the created nodes
 		"""
-		assert t >= 0
+		assert start >= 0
+		self.__event_times.add(start)
 
 		list_ids = []
-		for attrs in nodes_attr:
-			node_id = self.__G.number_of_nodes() + 1
+		for metadata in nodes_metadata:
+			node_id = self.__node_count + 1
+			interval = (start, st.SegmentTree.infinite)
+			# self.__G.add_node(node_id, metadata)
+			self.__nodes_data[node_id] = {'interval':interval , 'metadata':metadata, 'edges_ids':set()}
+			self.__nodes_time_index.insert(node_id, interval)
+			self.__node_count += 1
 			list_ids.append(node_id)
-			self.__G.add_node(node_id, attrs)
-			#self.__time_index.add_entry(node_id, (t,-1))
 		return set(list_ids)
 
-	def delete_nodes(self, nodes_idx, t=0):
+	def delete_nodes(self, nodes_idx, end=1):
 		"""
 			Delete the nodes with the ids contained in nodes_idx
 		"""
-		#for node_id in nodes_idx:
-		#	_,(start_time,_) = self.__time_index.delete_entry(node_id)
-		#	self.__time_index.add_entry(node_id, (start_time,t))
-		pass
+		assert end >= 1
+		self.__event_times.add(end)
 
-	def create_random_edges(self, edge_count, node_sets, cross_set_distribs, node_select_distribs, t=0):
+		for node_id in nodes_idx:
+			if node_id in self.__nodes_data:
+				interval = self.__nodes_data[node_id]['interval']
+				self.__nodes_time_index.delete(node_id,interval)
+				new_interval = (interval[0],end)
+				self.__nodes_time_index.insert(node_id, new_interval)
+				self.__nodes_data[node_id]['interval'] = new_interval
+
+				edges_idx = copy.deepcopy(self.__nodes_data[node_id]['edges_ids'])
+				self.delete_edges(edges_idx, end)
+				for edge_id in edges_idx:
+					if edge_id in self.__edges_data:
+						cur_start,cur_end = self.__edges_data[edge_id]['interval']
+						if cur_start > end:
+							# remove it, FOR REAL
+							self.__edges_time_index.delete(edge_id,(cur_start,cur_end))
+							src = self.__edges_data[edge_id]['src']
+							dest = self.__edges_data[edge_id]['dest']
+							self.__nodes_data[src]['edges_ids'].remove(edge_id)
+							self.__nodes_data[dest]['edges_ids'].remove(edge_id)
+							del self.__edges_data[edge_id]
+			else:
+				print "Node id", node_id, "does not exist, skipping"
+
+	def create_edges_metadata(self, nodes_list, edges_metadata, start=0):
+		assert len(nodes_list) == len(edges_metadata)
+		self.__event_times.add(start)
+		
+		list_ids = []
+		for i in range(len(nodes_list)):
+			src,dest = nodes_list[i]
+			if src in self.__nodes_data and dest in self.__nodes_data:
+				src_node = self.__nodes_data[src]
+				dest_node = self.__nodes_data[dest]
+				
+				edge_start = max(start,src_node['interval'][0],dest_node['interval'][0])
+				if src_node['interval'][1] == st.SegmentTree.infinite:
+					edge_end = dest_node['interval'][1]
+				elif dest_node['interval'][1] == st.SegmentTree.infinite:
+					edge_end = src_node['interval'][1]
+				else:
+					edge_end = min(src_node['interval'][1],dest_node['interval'][1])
+
+				if edge_start < edge_end or edge_end == st.SegmentTree.infinite:
+					edge_id = self.__edge_count + 1
+					interval = (edge_start, edge_end)
+					self.__edges_data[edge_id] = {'interval':interval , 'metadata':edges_metadata[i], 'src':src, 'dest':dest}
+					self.__edges_time_index.insert(edge_id, interval)
+					src_node['edges_ids'].add(edge_id)
+					dest_node['edges_ids'].add(edge_id)
+					self.__edge_count += 1
+					list_ids.append(edge_id)
+				else:
+					print "Impossible to create edge", i
+			else:
+				print "Src and dest of edge", i, "do not exist, skipping"
+
+	def delete_edges(self, edges_idx, end=1):
+		assert end >= 1
+		self.__event_times.add(end)
+
+		for edge_id in edges_idx:
+			if edge_id in self.__edges_data:
+				cur_start,cur_end = self.__edges_data[edge_id]['interval']
+				if cur_end > end and cur_start < end:
+					self.__edges_time_index.delete(edge_id,(cur_start,cur_end))
+					new_interval = (cur_start,end)
+					self.__edges_time_index.insert(edge_id, new_interval)
+					self.__edges_data[edge_id]['interval'] = new_interval
+			else:
+				print "Edge id", edge_id, "does not exist, skipping"
+
+	def create_random_edges(self, edge_count, node_sets, cross_set_distribs, node_select_distribs, start=0):
 		"""
 			node_sets: size = n ; list of sets (can be of different sizes)
 			cross_set_distribs: size = n x n ; matrix of floats summing to one
@@ -82,13 +160,19 @@ class Graph:
 		# We create a new set of nodes from Set2 by removing the nodes already connected to n1 and removing n1
 		# If the new set is empty, we remove n1 from Set1 and rdo the previous steps
 		# Else, we chose an node n2 from the new set and create an edge between n1 and n2
-		
-		#TODO: assert the distributions sum to 1 etc.
+		assert start >= 0
 
 		# flatten the cross_set_distribs
 		flattened_distrib = self.__flatten_matrix_distrib(cross_set_distribs)
 		cdf = Graph.__compute_cdf(flattened_distrib)
 		assert cdf[-1] == 1, "cross_set_distribs must sum to 1"
+		self.__event_times.add(start)
+
+		graph = self.get_graph_at_time(start)
+		existing_node_set = set(graph.nodes())
+		filtered_node_sets = []
+		for node_set in node_sets:
+			filtered_node_sets.append(node_set.intersection(existing_node_set))
 
 		for edge in range(edge_count):
 			edge_added = False
@@ -97,24 +181,25 @@ class Graph:
 				if cdf_idx >= len(cdf):
 					print "The graph is completely connected"
 					return False
-				i = cdf_idx % len(node_sets)
-				j = int(cdf_idx / len(node_sets))
+				i = cdf_idx % len(filtered_node_sets)
+				j = int(cdf_idx / len(filtered_node_sets))
 
-				if len(node_sets[i]) < len(node_sets[j]) or self.__G.is_directed():
+				if len(filtered_node_sets[i]) < len(filtered_node_sets[j]) or self.__is_directed:
 					src_idx, dest_idx = i,j
 				else:
 					src_idx, dest_idx = j,i
 
-				src_set, dest_set = copy.deepcopy(node_sets[src_idx]), copy.deepcopy(node_sets[dest_idx])
+				src_set, dest_set = copy.deepcopy(filtered_node_sets[src_idx]), copy.deepcopy(filtered_node_sets[dest_idx])
 				src_distrib, dest_distrib = copy.deepcopy(node_select_distribs[src_idx]), copy.deepcopy(node_select_distribs[dest_idx])
 
 				while len(src_set) > 0 and not edge_added:
 					node_1 = src_distrib.get_item(src_set)
-					except_set = set(self.__G[node_1].keys() + [node_1])
+					except_set = set(graph[node_1].keys() + [node_1])
 					filtered_destset = dest_set.difference(except_set)
 					if len(filtered_destset) > 0:
 						node_2 = dest_distrib.get_item(filtered_destset)
-						self.__G.add_edge(node_1, node_2)
+						graph.add_edge(node_1, node_2)
+						self.create_edges_metadata([(node_1,node_2)], [{}], start) #nodes_list, edges_metadata, start=0)
 						edge_added = True
 					else:
 						# remove node_1 from src_set
@@ -144,11 +229,29 @@ class Graph:
 		"""
 		pass
 
-	def plot(self, t=-1):
-		nx.draw_networkx(self.__G)
+	def get_graph_at_time(self, time):
+		nodes_ids = self.__nodes_time_index.query(time)
+		edges_ids = self.__edges_time_index.query(time)
+		graph_t = nx.DiGraph() if self.__is_directed else nx.Graph()
+		
+		for node_id in nodes_ids:
+			graph_t.add_node(node_id, self.__nodes_data[node_id]['metadata'])
+		for edge_id in edges_ids:
+			edge = self.__edges_data[edge_id]
+			# TODO REMOVE
+			assert edge['src'] in graph_t.nodes() and edge['dest'] in graph_t.nodes()
+			###
+			graph_t.add_edge(edge['src'], edge['dest'], edge['metadata'])
+		return graph_t
+
+	def plot(self, t=st.SegmentTree.infinite):
+		nx.draw_networkx(self.get_graph_at_time(t))
 		plt.show()
 
-
+	def plot_sequence(self):
+		for t in self.__event_times:
+			print "Graph at time", t
+			self.plot(t)
 
 class Distribution:
 	def __init__(self, **kwargs):

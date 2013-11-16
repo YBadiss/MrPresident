@@ -22,8 +22,6 @@ class SegmentTree:
 			assert start < end
 		assert start >= SegmentTree.min_value
 
-		print "Inserting", element_id, "-", interval
-
 		if end == SegmentTree.infinite:
 			self.__inifinite_elements[element_id] = end
 			self.__extend(start)
@@ -34,7 +32,6 @@ class SegmentTree:
 	def __insert(self, element_id, start, end, in_start, in_end):
 		key = (in_start, in_end)
 		if SegmentTree.__includes((start,end), key):
-			print "\tInserting in",key
 			self.__nodes[key].add(element_id)
 		else:
 			mid = int((in_start + in_end)/2)
@@ -49,8 +46,6 @@ class SegmentTree:
 		if end != SegmentTree.infinite:
 			assert start < end
 		assert start >= SegmentTree.min_value
-
-		print "Deleting", element_id, "-", interval
 
 		self.__delete(element_id, start, end, SegmentTree.min_value, self.__max_value)
 		if element_id in self.__inifinite_elements:
@@ -68,9 +63,10 @@ class SegmentTree:
 				self.__delete(element_id, start, end, mid + 1, in_end)
 
 	def query(self, point):
+		if point == SegmentTree.infinite:
+			# infinity is pretty equivalent to the first integer past the max value
+			point = self.__max_value + 1
 		assert point >= SegmentTree.min_value
-
-		print "Querying", point
 
 		if point <= self.__max_value:
 			return set(self.__query(point, SegmentTree.min_value, self.__max_value))
@@ -89,6 +85,5 @@ class SegmentTree:
 
 	def __extend(self, new_max_value):
 		while new_max_value > self.__max_value:
-			print "Extending from", self.__max_value, "to", self.__max_value*2
 			self.__nodes[(self.__max_value+1, 2*self.__max_value)] = set(self.__inifinite_elements.keys())
 			self.__max_value *= 2
