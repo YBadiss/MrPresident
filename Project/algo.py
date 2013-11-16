@@ -10,9 +10,9 @@ import pdb
 
 class Node:
 	tr = 5
-	h = 20
+	h = 150
 	d = 0
-	p = 100000
+	p = 1000000000000000000000000
 
 	def __init__(self, id):
 		self.id = id
@@ -132,7 +132,7 @@ def create_join(size):
 #random.seed(0)
 # G = nx.read_gml('jazz.net')
 # G = create_join(100)
-G = nx.read_graphml("karate.GraphML")
+G = nx.read_gml("power.gml")
 E = copy.deepcopy(G.edges())
 V = {n:Node(n) for n in G.nodes()}
 random.shuffle(E)
@@ -140,8 +140,9 @@ random.shuffle(E)
 a = {n:0 for n in G.nodes()}
 b = {n:0 for n in G.nodes()}
 
-for t in xrange(len(G)):
+for t in range(10):
 	for (n,m) in E:
+		# find_community(V[n],V[m])
 		if random.random() > 0.5:
 			find_community(V[n],V[m])
 		else:
@@ -151,8 +152,7 @@ for t in xrange(len(G)):
 
 for node in G.node.keys():
 	G.node[node]['label'] = V[node].c
-
-nx.write_gexf(G, "karate.gexf")
+nx.write_gexf(G, "power.gexf")
 
 # pos = nx.draw(G, None, labels={node.id:node.c for node in V.values()})
 # nx.draw_networkx(G)
