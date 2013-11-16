@@ -22,7 +22,10 @@ class Graph:
 	def __init__(self, is_directed=False):
 		# create the graph with networkx
 		self.__G = nx.DiGraph() if is_directed else nx.Graph()
-		#self.__time_index = SegmentTree()
+		self.__nodes_time_index = SegmentTree()
+		self.__nodes_to_intervals = {}
+		self.__edges_time_index = SegmentTree()
+		self.__edges_to_intervals = {}
 
 	def __flatten_matrix_distrib(self, cross_set_distribs):
 		flattened = []
