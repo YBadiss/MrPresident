@@ -204,15 +204,10 @@ class Graph:
 					else:
 						# remove node_1 from src_set
 						src_set.remove(node_1)
-
 				if not edge_added:
 					flattened_distrib = Graph.__remove_element_from_distrib(flattened_distrib, cdf_idx)
 					cdf = Graph.__compute_cdf(flattened_distrib)
-
 		return True
-			# if set1 becomes empty, recompute the new cdf
-			# we have to manage eges and the possibility that multiple edges between n1 and n2 can exist at different times
-			# use GetGraphAtTime_t(t) ? 
 
 
 	def delete_random_edges(self, edge_count, node_sets, cross_set_distribs, node_select_distrib, t=0):
@@ -238,11 +233,42 @@ class Graph:
 			graph_t.add_node(node_id, self.__nodes_data[node_id]['metadata'])
 		for edge_id in edges_ids:
 			edge = self.__edges_data[edge_id]
-			# TODO REMOVE
-			assert edge['src'] in graph_t.nodes() and edge['dest'] in graph_t.nodes()
-			###
 			graph_t.add_edge(edge['src'], edge['dest'], edge['metadata'])
 		return graph_t
+
+	def get_diff_between_times(self, start, end):
+		nodes_ids_start = self.__nodes_time_index.query(start)
+		edges_ids_start = self.__edges_time_index.query(start)
+		nodes_ids_end = self.__nodes_time_index.query(end)
+		edges_ids_end = self.__edges_time_index.query(end)
+
+		diff = {}
+		diff["add_nodes_from"] = nodes_ids_end.difference(nodes_ids_start)
+		diff["remove_nodes_from"] = nodes_ids_start.difference(nodes_ids_end)
+		diff["add_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in edges_ids_start}
+		diff["remove_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in edges_ids_end}
+		return diff
+
+	def get_initial_diff(self):
+		time = list(self.__event_times)[0]
+		nodes_ids_start = self.__nodes_time_index.query(time)
+		edges_ids_start = self.__edges_time_index.query(time)
+		diff = {}
+		diff["add_nodes_from"] = nodes_ids_start
+		diff["remove_nodes_from"] = set()
+		diff["add_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in edges_ids_start}
+		diff["remove_edges_from"] = set()
+		return diff
+
+	def get_all_diffs(self):
+		if len(self.__event_times) > 0:
+			list_event_times = list(self.__event_times)
+			yield self.get_initial_diff(), list_event_times[0]
+
+			for i in range(len(list_event_times)-1):
+				start = list_event_times[i]
+				end = list_event_times[i+1]
+				yield self.get_diff_between_times(start,end), end
 
 	def plot(self, t=st.SegmentTree.infinite):
 		nx.draw_networkx(self.get_graph_at_time(t))
@@ -252,6 +278,7 @@ class Graph:
 		for t in self.__event_times:
 			print "Graph at time", t
 			self.plot(t)
+
 
 class Distribution:
 	def __init__(self, **kwargs):

@@ -1,294 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?><gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
   <graph defaultedgetype="undirected" mode="static">
-    <attributes class="node" mode="static">
-      <attribute id="0" title="Faction" type="double" />
-      <attribute id="1" title="name" type="string" />
-    </attributes>
     <nodes>
-      <node id="n12" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 13" />
-        </attvalues>
-      </node>
-      <node id="n13" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 14" />
-        </attvalues>
-      </node>
-      <node id="n10" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 11" />
-        </attvalues>
-      </node>
-      <node id="n11" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 12" />
-        </attvalues>
-      </node>
-      <node id="n16" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 17" />
-        </attvalues>
-      </node>
-      <node id="n17" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 18" />
-        </attvalues>
-      </node>
-      <node id="n14" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 15" />
-        </attvalues>
-      </node>
-      <node id="n15" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 16" />
-        </attvalues>
-      </node>
-      <node id="n18" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 19" />
-        </attvalues>
-      </node>
-      <node id="n19" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 20" />
-        </attvalues>
-      </node>
-      <node id="n30" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 31" />
-        </attvalues>
-      </node>
-      <node id="n31" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 32" />
-        </attvalues>
-      </node>
-      <node id="n32" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 33" />
-        </attvalues>
-      </node>
-      <node id="n33" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="John A" />
-        </attvalues>
-      </node>
-      <node id="n29" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 30" />
-        </attvalues>
-      </node>
-      <node id="n28" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 29" />
-        </attvalues>
-      </node>
-      <node id="n23" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 24" />
-        </attvalues>
-      </node>
-      <node id="n22" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 23" />
-        </attvalues>
-      </node>
-      <node id="n21" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 22" />
-        </attvalues>
-      </node>
-      <node id="n20" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 21" />
-        </attvalues>
-      </node>
-      <node id="n27" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 28" />
-        </attvalues>
-      </node>
-      <node id="n26" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 27" />
-        </attvalues>
-      </node>
-      <node id="n25" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 26" />
-        </attvalues>
-      </node>
-      <node id="n24" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 25" />
-        </attvalues>
-      </node>
-      <node id="n8" label="n33">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 9" />
-        </attvalues>
-      </node>
-      <node id="n9" label="n7">
-        <attvalues>
-          <attvalue for="0" value="2.0" />
-          <attvalue for="1" value="Actor 10" />
-        </attvalues>
-      </node>
-      <node id="n0" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Mr Hi" />
-        </attvalues>
-      </node>
-      <node id="n1" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 2" />
-        </attvalues>
-      </node>
-      <node id="n2" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 3" />
-        </attvalues>
-      </node>
-      <node id="n3" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 4" />
-        </attvalues>
-      </node>
-      <node id="n4" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 5" />
-        </attvalues>
-      </node>
-      <node id="n5" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 6" />
-        </attvalues>
-      </node>
-      <node id="n6" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 7" />
-        </attvalues>
-      </node>
-      <node id="n7" label="n7">
-        <attvalues>
-          <attvalue for="0" value="1.0" />
-          <attvalue for="1" value="Actor 8" />
-        </attvalues>
-      </node>
+      <node id="1" label="29" />
+      <node id="2" label="29" />
+      <node id="3" label="29" />
+      <node id="4" label="18" />
+      <node id="5" label="18" />
+      <node id="6" label="5" />
+      <node id="7" label="18" />
+      <node id="8" label="25" />
+      <node id="9" label="29" />
+      <node id="10" label="29" />
+      <node id="11" label="18" />
+      <node id="12" label="8" />
+      <node id="13" label="25" />
+      <node id="14" label="29" />
+      <node id="15" label="29" />
+      <node id="16" label="16" />
+      <node id="17" label="5" />
+      <node id="18" label="18" />
+      <node id="19" label="16" />
+      <node id="20" label="25" />
+      <node id="21" label="16" />
+      <node id="22" label="18" />
+      <node id="23" label="16" />
+      <node id="24" label="29" />
+      <node id="25" label="16" />
+      <node id="26" label="29" />
+      <node id="27" label="29" />
+      <node id="28" label="29" />
+      <node id="29" label="25" />
+      <node id="30" label="27" />
+      <node id="31" label="29" />
+      <node id="32" label="29" />
+      <node id="33" label="29" />
+      <node id="34" label="16" />
     </nodes>
     <edges>
-      <edge id="0" source="n12" target="n0" weight="1.0" />
-      <edge id="1" source="n12" target="n3" weight="3.0" />
-      <edge id="2" source="n13" target="n0" weight="3.0" />
-      <edge id="3" source="n13" target="n1" weight="5.0" />
-      <edge id="4" source="n13" target="n2" weight="3.0" />
-      <edge id="5" source="n13" target="n3" weight="3.0" />
-      <edge id="6" source="n13" target="n33" weight="3.0" />
-      <edge id="7" source="n10" target="n0" weight="2.0" />
-      <edge id="8" source="n10" target="n4" weight="3.0" />
-      <edge id="9" source="n10" target="n5" weight="3.0" />
-      <edge id="10" source="n11" target="n0" weight="3.0" />
-      <edge id="11" source="n16" target="n5" weight="3.0" />
-      <edge id="12" source="n16" target="n6" weight="3.0" />
-      <edge id="13" source="n17" target="n0" weight="2.0" />
-      <edge id="14" source="n17" target="n1" weight="1.0" />
-      <edge id="15" source="n14" target="n32" weight="3.0" />
-      <edge id="16" source="n14" target="n33" weight="2.0" />
-      <edge id="17" source="n15" target="n32" weight="3.0" />
-      <edge id="18" source="n15" target="n33" weight="4.0" />
-      <edge id="19" source="n18" target="n32" weight="1.0" />
-      <edge id="20" source="n18" target="n33" weight="2.0" />
-      <edge id="21" source="n19" target="n0" weight="2.0" />
-      <edge id="22" source="n19" target="n1" weight="2.0" />
-      <edge id="23" source="n19" target="n33" weight="1.0" />
-      <edge id="24" source="n30" target="n8" weight="3.0" />
-      <edge id="25" source="n30" target="n1" weight="2.0" />
-      <edge id="26" source="n30" target="n32" weight="3.0" />
-      <edge id="27" source="n30" target="n33" weight="3.0" />
-      <edge id="28" source="n31" target="n28" weight="2.0" />
-      <edge id="29" source="n31" target="n0" weight="2.0" />
-      <edge id="30" source="n31" target="n32" weight="4.0" />
-      <edge id="31" source="n31" target="n33" weight="4.0" />
-      <edge id="32" source="n31" target="n25" weight="7.0" />
-      <edge id="33" source="n31" target="n24" weight="2.0" />
-      <edge id="34" source="n32" target="n20" weight="3.0" />
-      <edge id="35" source="n32" target="n8" weight="3.0" />
-      <edge id="36" source="n32" target="n23" weight="5.0" />
-      <edge id="37" source="n32" target="n29" weight="4.0" />
-      <edge id="38" source="n32" target="n22" weight="2.0" />
-      <edge id="39" source="n32" target="n2" weight="2.0" />
-      <edge id="40" source="n32" target="n33" weight="5.0" />
-      <edge id="41" source="n33" target="n23" weight="4.0" />
-      <edge id="42" source="n33" target="n8" weight="4.0" />
-      <edge id="43" source="n33" target="n9" weight="2.0" />
-      <edge id="44" source="n33" target="n29" weight="2.0" />
-      <edge id="45" source="n33" target="n28" weight="2.0" />
-      <edge id="46" source="n33" target="n22" weight="3.0" />
-      <edge id="47" source="n33" target="n20" weight="1.0" />
-      <edge id="48" source="n33" target="n27" weight="4.0" />
-      <edge id="49" source="n33" target="n26" weight="2.0" />
-      <edge id="50" source="n29" target="n23" weight="3.0" />
-      <edge id="51" source="n29" target="n26" weight="4.0" />
-      <edge id="52" source="n28" target="n2" weight="2.0" />
-      <edge id="53" source="n23" target="n27" weight="4.0" />
-      <edge id="54" source="n23" target="n25" weight="5.0" />
-      <edge id="55" source="n21" target="n0" weight="2.0" />
-      <edge id="56" source="n21" target="n1" weight="2.0" />
-      <edge id="57" source="n27" target="n2" weight="2.0" />
-      <edge id="58" source="n27" target="n24" weight="3.0" />
-      <edge id="59" source="n25" target="n24" weight="2.0" />
-      <edge id="60" source="n8" target="n0" weight="2.0" />
-      <edge id="61" source="n8" target="n2" weight="5.0" />
-      <edge id="62" source="n9" target="n2" weight="1.0" />
-      <edge id="63" source="n0" target="n5" weight="3.0" />
-      <edge id="64" source="n0" target="n1" weight="4.0" />
-      <edge id="65" source="n0" target="n3" weight="3.0" />
-      <edge id="66" source="n0" target="n4" weight="3.0" />
-      <edge id="67" source="n0" target="n2" weight="5.0" />
-      <edge id="68" source="n0" target="n6" weight="3.0" />
-      <edge id="69" source="n0" target="n7" weight="2.0" />
-      <edge id="70" source="n1" target="n3" weight="3.0" />
-      <edge id="71" source="n1" target="n2" weight="6.0" />
-      <edge id="72" source="n1" target="n7" weight="4.0" />
-      <edge id="73" source="n2" target="n3" weight="3.0" />
-      <edge id="74" source="n2" target="n7" weight="4.0" />
-      <edge id="75" source="n3" target="n7" weight="3.0" />
-      <edge id="76" source="n4" target="n6" weight="2.0" />
-      <edge id="77" source="n5" target="n6" weight="5.0" />
+      <edge id="0" source="1" target="32" />
+      <edge id="1" source="1" target="2" />
+      <edge id="2" source="1" target="3" />
+      <edge id="3" source="1" target="4" />
+      <edge id="4" source="1" target="5" />
+      <edge id="5" source="1" target="6" />
+      <edge id="6" source="1" target="7" />
+      <edge id="7" source="1" target="8" />
+      <edge id="8" source="1" target="9" />
+      <edge id="9" source="1" target="11" />
+      <edge id="10" source="1" target="12" />
+      <edge id="11" source="1" target="13" />
+      <edge id="12" source="1" target="14" />
+      <edge id="13" source="1" target="18" />
+      <edge id="14" source="1" target="20" />
+      <edge id="15" source="1" target="22" />
+      <edge id="16" source="2" target="3" />
+      <edge id="17" source="2" target="4" />
+      <edge id="18" source="2" target="8" />
+      <edge id="19" source="2" target="14" />
+      <edge id="20" source="2" target="18" />
+      <edge id="21" source="2" target="20" />
+      <edge id="22" source="2" target="22" />
+      <edge id="23" source="2" target="31" />
+      <edge id="24" source="3" target="4" />
+      <edge id="25" source="3" target="33" />
+      <edge id="26" source="3" target="8" />
+      <edge id="27" source="3" target="9" />
+      <edge id="28" source="3" target="10" />
+      <edge id="29" source="3" target="14" />
+      <edge id="30" source="3" target="28" />
+      <edge id="31" source="3" target="29" />
+      <edge id="32" source="4" target="8" />
+      <edge id="33" source="4" target="13" />
+      <edge id="34" source="4" target="14" />
+      <edge id="35" source="5" target="11" />
+      <edge id="36" source="5" target="7" />
+      <edge id="37" source="6" target="7" />
+      <edge id="38" source="6" target="11" />
+      <edge id="39" source="6" target="17" />
+      <edge id="40" source="7" target="17" />
+      <edge id="41" source="9" target="31" />
+      <edge id="42" source="9" target="34" />
+      <edge id="43" source="9" target="33" />
+      <edge id="44" source="10" target="34" />
+      <edge id="45" source="14" target="34" />
+      <edge id="46" source="15" target="33" />
+      <edge id="47" source="15" target="34" />
+      <edge id="48" source="16" target="33" />
+      <edge id="49" source="16" target="34" />
+      <edge id="50" source="19" target="33" />
+      <edge id="51" source="19" target="34" />
+      <edge id="52" source="20" target="34" />
+      <edge id="53" source="21" target="33" />
+      <edge id="54" source="21" target="34" />
+      <edge id="55" source="23" target="33" />
+      <edge id="56" source="23" target="34" />
+      <edge id="57" source="24" target="33" />
+      <edge id="58" source="24" target="26" />
+      <edge id="59" source="24" target="28" />
+      <edge id="60" source="24" target="34" />
+      <edge id="61" source="24" target="30" />
+      <edge id="62" source="25" target="32" />
+      <edge id="63" source="25" target="26" />
+      <edge id="64" source="25" target="28" />
+      <edge id="65" source="26" target="32" />
+      <edge id="66" source="27" target="34" />
+      <edge id="67" source="27" target="30" />
+      <edge id="68" source="28" target="34" />
+      <edge id="69" source="29" target="32" />
+      <edge id="70" source="29" target="34" />
+      <edge id="71" source="30" target="33" />
+      <edge id="72" source="30" target="34" />
+      <edge id="73" source="31" target="34" />
+      <edge id="74" source="31" target="33" />
+      <edge id="75" source="32" target="33" />
+      <edge id="76" source="32" target="34" />
+      <edge id="77" source="33" target="34" />
     </edges>
   </graph>
 </gexf>

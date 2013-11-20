@@ -1,0 +1,29 @@
+TODO
+	Presentation 5min
+		Project Description (3:45)
+			Motivation (0:45)
+				Graph / Social network
+				Dynamic
+				In general
+			Community Detection (1:45)
+				The algorithm we chose
+				Testig Issue
+			Graph Generator (1:15)
+				Static/Dynamic
+				Fully Parametrable
+				Segment Tree to handle time (snapshots)
+		Demo (1:00)
+		Work remaining (0:15)
+			Perf analysis and improvement
+			Improve code quality
+			Further analysis of the algorithm
+
+
+	Gerer la deletion
+	Clean code
+	Arguments par defaut
+		Lois representant les socials network
+		Fonctions reliant/separant deux communautes
+	performance analysis
+	calculer les complexites
+	colorer les clusters (arg dans plot)
