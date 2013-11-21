@@ -71,11 +71,11 @@ G.create_random_edges(	500,
 # 					    4)
 
 
-learn_parameters(G)
+#learn_parameters(G)
 
 # cdr = cd.CommunityDetector(G, sorted_results[-1][1]["tr"], sorted_results[-1][1]["h"], sorted_results[-1][1]["d"], sorted_results[-1][1]["p"])
-# cdr = cd.CommunityDetector(G, 10, 50, 5, 10000)
-# cdr.run(True, True)
+cdr = cd.CommunityDetector(G, 10, 50, 5, 10000)
+cdr.run(True, True)
 
 
 # G.create_random_edges(200, [set1, set2], [[0,1],[0,0]], [gg.UniformDistrib(), gg.UniformDistrib()],4)
