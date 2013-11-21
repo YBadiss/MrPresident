@@ -1,49 +1,82 @@
 import GraphGenerator as gg
 import CommunityDetection as cd
-import pprint
-import pdb
+from parameter_learner import *
 
 G = gg.Graph()
-set1 = G.create_nodes_metadata([{"clustId":1} for i in range(100)])
-set2 = G.create_nodes_metadata([{"clustId":2} for i in range(100)])
-set3 = G.create_nodes_metadata([{"clustId":3} for i in range(50)])
-set4 = G.create_nodes_metadata([{"clustId":4} for i in range(50)])
-G.create_random_edges(1500, [set1, set2, set3, set4], 
-							[[0.33,0.02,0   ,0   ],
-							 [0   ,0.33,0   ,0   ],
-							 [0   ,0   ,0.16,0   ],
-							 [0   ,0   ,0   ,0.16]], [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()])
+set1 = G.create_nodes(200, {"clustId":1}, 0)
+set2 = G.create_nodes(400, {"clustId":2}, 0)
+set3 = G.create_nodes(50, {"clustId":3}, 0)
+set4 = G.create_nodes(50, {"clustId":3}, 0)
+G.create_random_edges(	2500,
+						[set1, set2, set3, set4], 
+						[[0.29,0.01,0   ,0   ],
+						 [0   ,0.5 ,0   ,0   ],
+						 [0   ,0   ,0.10,0   ],
+						 [0   ,0   ,0   ,0.10]],
+						[gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],
+						0)
 
-G.create_random_edges(200, [set1, set2, set3, set4], 
-						   [[0,0,0.5,0  ],
-						    [0,0,0  ,0.5],
-						    [0,0,0  ,0  ],
-						    [0,0,0  ,0  ]], [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],3)
+G.create_random_edges(	2500,
+						[set1, set2, set3, set4], 
+						[[0.29,0.01,0   ,0   ],
+						 [0   ,0.5 ,0   ,0   ],
+						 [0   ,0   ,0.10,0   ],
+						 [0   ,0   ,0   ,0.10]],
+						[gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],
+						1)
 
-tr_list = [0,5]
-h_list = [1,10,20,50]
-d_list = [0]
-p_list = [100,100000000000000000000]
+G.create_random_edges(	400,
+						[set1, set2, set3, set4], 
+						[[0   ,0   ,0.5 ,0   ],
+					     [0   ,0   ,0   ,0.5 ],
+					     [0   ,0   ,0   ,0   ],
+					     [0   ,0   ,0   ,0   ]],
+					    [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],
+					    2)
 
-repeat = 10
-results = []
-for tr in tr_list:
-	for h in h_list:
-		for d in d_list:
-			for p in p_list:
-				temp = []
-				for i in range(repeat):
-					cdr = cd.CommunityDetector(G, tr, h, d, p)
-					cdr.run()
-					temp.append(cdr.compute_accuracy(False))
-				results.append((sum(temp)/float(repeat), {"tr":tr,"h":h,"d":d,"p":p}))
+G.create_random_edges(	500,
+						[set1, set2, set3, set4], 
+						[[0   ,0   ,0   ,0   ],
+					     [0   ,0   ,0   ,0   ],
+					     [0   ,0   ,0   ,0.5 ],
+					     [0   ,0   ,0   ,0   ]],
+					    [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],
+					    3)
 
-sorted_results = sorted(results)[-10:]
-pprint.pprint(sorted_results)
+G.create_random_edges(	500,
+						[set1, set2, set3, set4], 
+						[[0   ,0   ,0   ,0   ],
+					     [0   ,0   ,0   ,0   ],
+					     [0   ,0   ,0   ,0.5 ],
+					     [0   ,0   ,0   ,0   ]],
+					    [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],
+					    4)
 
-cdr = cd.CommunityDetector(G, sorted_results[-1][1]["tr"], sorted_results[-1][1]["h"], sorted_results[-1][1]["d"], sorted_results[-1][1]["p"])
-cdr.run()
-pprint.pprint(cdr.compute_accuracy(True))
+
+# set5 = G.create_nodes(50, {"clustId":5}, 2)
+# G.create_random_edges(	200,
+# 						[set5], 
+# 						[[1]],
+# 					    [gg.UniformDistrib()],
+# 					    2)
+# G.create_random_edges(	200,
+# 						[set5], 
+# 						[[1]],
+# 					    [gg.UniformDistrib()],
+# 					    3)
+# G.create_random_edges(	100,
+# 						[set5], 
+# 						[[1]],
+# 					    [gg.UniformDistrib()],
+# 					    4)
+
+
+learn_parameters(G)
+
+# cdr = cd.CommunityDetector(G, sorted_results[-1][1]["tr"], sorted_results[-1][1]["h"], sorted_results[-1][1]["d"], sorted_results[-1][1]["p"])
+# cdr = cd.CommunityDetector(G, 10, 50, 5, 10000)
+# cdr.run(True, True)
+
 
 # G.create_random_edges(200, [set1, set2], [[0,1],[0,0]], [gg.UniformDistrib(), gg.UniformDistrib()],4)
 # G.create_random_edges(200, [set1, set2, set3, set4], [[0,0,0,0.5],[0,0,0.5,0],[0,0,0,0],[0,0,0,0]], [gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib(), gg.UniformDistrib()],5)

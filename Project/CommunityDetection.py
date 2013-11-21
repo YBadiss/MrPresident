@@ -4,7 +4,8 @@
 import random, pprint
 import SegmentTree as st
 import networkx as nx
-from collections import defaultdict, Counter
+from collections import defaultdict
+import matplotlib.pyplot as plt
 
 class Node:
 	tr = 0 # number of steps while communition propagation occurs
@@ -61,64 +62,32 @@ class CommunityDetector(object):
 		self.b = {}
 		self.V = {}
 
-	# FindCommunity(i:Self ID, j:Connected Node):
 	def __find_community(self, node_i, node_j):
-		# if |Hi | ≥ h then
-		# 	Remove the oldest contact in Hi
-		# end if
-		# H i = H i + cj
 		node_i.add_contact(node_j)
 
-		# if ¬ri then
-		# 	With probability 1/p
-		# 	Let ai = ci and bi = i
-		# 	Relabel ci with bi
-		# 	rci = 0
-		# 	ri = T rue
-		# end if
 		if not node_i.r:
 			self.a,self.b = node_i.do_relabel(self.a,self.b)
 
-		# if ri then
-		# 	Replace all instances of ai in Hi with bi
-		# end if
 		if node_i.r:
 			node_i.replace_contacts(self.a[i],self.b[i])
 
-		# if rj then
-		# 	Replace all instances of aj in Hi with bj
-		# end if
 		if node_j.r:
 			node_i.replace_contacts(self.a[j],self.b[j])
 
-		# Let Li be a list of all communities mentioned in Hi
-		# Let all communities in Li have weight 1
-		# for lk in Hi do [1,3,4,1,4,5,1]
-		# 	Add max(h − dk, 1) to the community lk in list Li
-		# end for
 		weights = node_i.compute_communities_weights()
-
-		# ci = the highest weight community in Li
 		(_,node_i.c) = max(weights)
 		
-		# if rci = tr then
-		# 	ri = F alse
-		# end if
-		# 
-		# if ri then
-		# 	rci = rci + 1
-		# end if
 		node_i.update_relabel()
 
-	def compute_accuracy(self, export_graph=True):
-		clust_attr = "clustId" # moooooove
+	def compute_accuracy(self, export_graph=False, time=st.SegmentTree.infinite):
+		clust_attr = "clustId"
 
 		labels_nodes = defaultdict(set)
 		for node_id, node in self.V.items():
 			labels_nodes[node.c].add(node_id)
 
 		clust_nodes = defaultdict(set)
-		G = self.graph.get_graph_at_time(st.SegmentTree.infinite)
+		G = self.graph.get_graph_at_time(time)
 		for node_id, node_attr in G.nodes(data=True):
 			clust_nodes[node_attr[clust_attr]].add(node_id)
 		clust_cnt = sorted([(len(v),k) for k,v in clust_nodes.items()])
@@ -138,24 +107,30 @@ class CommunityDetector(object):
 				del clust_jaccard[i][best_label]
 
 		if export_graph:
-			pprint.pprint(matching)
-			pprint.pprint(best_jaccard)
+			# pprint.pprint(matching)
+			# pprint.pprint(best_jaccard)
 			for node in G.node.keys():
 				G.node[node]['label'] = self.V[node].c
 				if self.V[node].c in matching:
 					G.node[node]['matching'] = self.V[node].c
-					if G.node[node][clust_attr] == matching[self.V[node].c]:
-						G.node[node]['correct'] = matching[self.V[node].c]
-					else:
-						G.node[node]['correct'] = -1
 				else:
 					G.node[node]['matching'] = -1
-			nx.write_gexf(G, "graph.gexf")
-			
+			nx.write_gexf(G, "graph_%d.gexf"%time)
+
+			colors = [(0,0,1),(0,1,0),(1,0,0),(0.9,0.7,0),(0.7,0,0.9)]
+			node_color_mapping = {}
+			for i in range(len(matching)):
+				node_color_mapping[matching.keys()[i]] = colors[i]
+
+			node_color_list = [node_color_mapping[self.V[node_id].c] if self.V[node_id].c in node_color_mapping else (0.5,0.5,0.5) for node_id in G.node.keys()]
+			nx.draw_networkx(G, nx.spring_layout(G), False, node_color=node_color_list, alpha=0.7)
+
+			plt.show()
+
 		return sum([1 if self.V[node].c in matching else 0 for node in G.node.keys()]) / float(len(G.nodes()))
 
-	def run(self):
-		for diff,time in self.graph.get_all_diffs():
+	def run(self, accuracy=False, export_graph=False, start=0, end=-1):
+		for diff,time in self.graph.get_all_diffs(start,end):
 			for n in diff["remove_nodes_from"]:
 				if n in self.a:
 					del self.a[n]
@@ -170,10 +145,13 @@ class CommunityDetector(object):
 
 			E = list(diff["add_edges_from"])
 			random.shuffle(E)
-			#print "Running for time =",time
+			print len(E)
+
 			for (n,m) in E:
-				# find_community(V[n],V[m])
 				if random.random() > 0.5:
 					self.__find_community(self.V[n],self.V[m])
 				else:
 					self.__find_community(self.V[m],self.V[n])
+			
+			if accuracy:
+				print "Accuracy at time %d: %f"%(time,self.compute_accuracy(export_graph, time))

@@ -41,8 +41,8 @@ class Graph:
 					flattened.append(0)
 		return flattened
 
-	def create_nodes(self, node_count, start=0):
-		return self.create_nodes_metadata([{} for i in range(node_count)], start)
+	def create_nodes(self, node_count, common_metadata={}, start=0):
+		return self.create_nodes_metadata([copy.deepcopy(common_metadata) for i in range(node_count)], start)
 
 	def create_nodes_metadata(self, nodes_metadata, start=0):
 		"""
@@ -245,12 +245,14 @@ class Graph:
 		diff = {}
 		diff["add_nodes_from"] = nodes_ids_end.difference(nodes_ids_start)
 		diff["remove_nodes_from"] = nodes_ids_start.difference(nodes_ids_end)
-		diff["add_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in edges_ids_start}
-		diff["remove_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in edges_ids_end}
+		add_edges_id = edges_ids_end.difference(edges_ids_start)
+		remove_edges_id = edges_ids_start.difference(edges_ids_end)
+		diff["add_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in add_edges_id}
+		diff["remove_edges_from"] = {(self.__edges_data[edge_id]['src'],self.__edges_data[edge_id]['dest']) for edge_id in remove_edges_id}
 		return diff
 
-	def get_initial_diff(self):
-		time = list(self.__event_times)[0]
+	def __get_state_at_time(self, start=0):
+		time = list(self.__event_times)[start]
 		nodes_ids_start = self.__nodes_time_index.query(time)
 		edges_ids_start = self.__edges_time_index.query(time)
 		diff = {}
@@ -260,15 +262,20 @@ class Graph:
 		diff["remove_edges_from"] = set()
 		return diff
 
-	def get_all_diffs(self):
-		if len(self.__event_times) > 0:
-			list_event_times = list(self.__event_times)
-			yield self.get_initial_diff(), list_event_times[0]
+	def get_all_diffs(self, start=0, end=-1):
+		if end < 0:
+			end = len(self.__event_times)
+		else:
+			end = min(end,len(self.__event_times))
 
-			for i in range(len(list_event_times)-1):
-				start = list_event_times[i]
-				end = list_event_times[i+1]
-				yield self.get_diff_between_times(start,end), end
+		if len(self.__event_times) > start and start <= end:
+			list_event_times = list(self.__event_times)
+			yield self.__get_state_at_time(start), list_event_times[start]
+
+			for i in range(start,end-1):
+				time1 = list_event_times[i]
+				time2 = list_event_times[i+1]
+				yield self.get_diff_between_times(time1,time2), time2
 
 	def plot(self, t=st.SegmentTree.infinite):
 		nx.draw_networkx(self.get_graph_at_time(t))
