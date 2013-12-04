@@ -42,7 +42,7 @@ class Graph:
 		return flattened
 
 	def create_nodes(self, node_count, common_metadata={}, start=0):
-		return self.create_nodes_metadata([copy.deepcopy(common_metadata) for i in range(node_count)], start)
+		return self.create_nodes_metadata([{k:v for k,v in common_metadata.items()} for i in range(node_count)], start)
 
 	def create_nodes_metadata(self, nodes_metadata, start=0):
 		"""
@@ -78,12 +78,12 @@ class Graph:
 				self.__nodes_time_index.insert(node_id, new_interval)
 				self.__nodes_data[node_id]['interval'] = new_interval
 
-				edges_idx = copy.deepcopy(self.__nodes_data[node_id]['edges_ids'])
+				edges_idx = {edge_id for edge_id in self.__nodes_data[node_id]['edges_ids']}
 				self.delete_edges(edges_idx, end)
 				for edge_id in edges_idx:
 					if edge_id in self.__edges_data:
 						cur_start,cur_end = self.__edges_data[edge_id]['interval']
-						if cur_start > end:
+						if (cur_end > end) or (cur_end == st.SegmentTree.infinite):
 							# remove it, FOR REAL
 							self.__edges_time_index.delete(edge_id,(cur_start,cur_end))
 							src = self.__edges_data[edge_id]['src']
@@ -134,7 +134,7 @@ class Graph:
 		for edge_id in edges_idx:
 			if edge_id in self.__edges_data:
 				cur_start,cur_end = self.__edges_data[edge_id]['interval']
-				if cur_end > end and cur_start < end:
+				if (cur_end > end or cur_end == st.SegmentTree.infinite) and cur_start < end:
 					self.__edges_time_index.delete(edge_id,(cur_start,cur_end))
 					new_interval = (cur_start,end)
 					self.__edges_time_index.insert(edge_id, new_interval)
@@ -189,8 +189,8 @@ class Graph:
 				else:
 					src_idx, dest_idx = j,i
 
-				src_set, dest_set = copy.deepcopy(filtered_node_sets[src_idx]), copy.deepcopy(filtered_node_sets[dest_idx])
-				src_distrib, dest_distrib = copy.deepcopy(node_select_distribs[src_idx]), copy.deepcopy(node_select_distribs[dest_idx])
+				src_set, dest_set = {node_id for node_id in filtered_node_sets[src_idx]}, filtered_node_sets[dest_idx]
+				src_distrib, dest_distrib = node_select_distribs[src_idx], node_select_distribs[dest_idx]
 
 				while len(src_set) > 0 and not edge_added:
 					node_1 = src_distrib.get_item(src_set)
@@ -210,7 +210,7 @@ class Graph:
 		return True
 
 
-	def delete_random_edges(self, edge_count, node_sets, cross_set_distribs, node_select_distrib, t=0):
+	def delete_random_edges(self, edge_count, node_sets, cross_set_distribs, node_select_distribs, end=0):
 		"""
 			node_sets: size = n ; list of lists (can be of different sizes)
 			cross_set_distribs: size = n x n ; matrix of floats summing to one
@@ -222,7 +222,62 @@ class Graph:
 
 			Returns success code (True/False)
 		"""
-		pass
+
+		assert end >= 0
+
+		# flatten the cross_set_distribs
+		flattened_distrib = self.__flatten_matrix_distrib(cross_set_distribs)
+		cdf = Graph.__compute_cdf(flattened_distrib)
+		assert cdf[-1] == 1, "cross_set_distribs must sum to 1"
+		self.__event_times.add(end)
+
+		graph = self.get_graph_at_time(end)
+		existing_node_set = set(graph.nodes())
+		filtered_node_sets = []
+		for node_set in node_sets:
+			filtered_node_sets.append(node_set.intersection(existing_node_set))
+
+		for edge in range(edge_count):
+			edge_deleted = False
+			while not edge_deleted:
+				cdf_idx = bisect.bisect_left(cdf, random.random())
+				if cdf_idx >= len(cdf):
+					print "The graph is completely connected"
+					return False
+				i = cdf_idx % len(filtered_node_sets)
+				j = int(cdf_idx / len(filtered_node_sets))
+
+				if len(filtered_node_sets[i]) < len(filtered_node_sets[j]) or self.__is_directed:
+					src_idx, dest_idx = i,j
+				else:
+					src_idx, dest_idx = j,i
+
+				src_set, dest_set = {node_id for node_id in filtered_node_sets[src_idx]}, filtered_node_sets[dest_idx]
+				src_distrib, dest_distrib = node_select_distribs[src_idx], node_select_distribs[dest_idx]
+
+				while len(src_set) > 0 and not edge_deleted:
+					node_1 = src_distrib.get_item(src_set)
+					node_edge_matching = {}
+					for edge_id in self.__nodes_data[node_1]['edges_ids']:
+						if self.__edges_data[edge_id]['dest'] == node_1:
+							node_edge_matching[self.__edges_data[edge_id]['src']] = edge_id
+						else:
+							node_edge_matching[self.__edges_data[edge_id]['dest']] = edge_id
+
+					filtered_destset = dest_set.intersection(graph[node_1].keys())
+					if len(filtered_destset) > 0:
+						node_2 = dest_distrib.get_item(filtered_destset)
+						graph.remove_edge(node_1, node_2)
+						self.delete_edges([(node_edge_matching[node_2])], end)
+						edge_deleted = True
+					else:
+						# remove node_1 from src_set
+						src_set.remove(node_1)
+				if not edge_deleted:
+					flattened_distrib = Graph.__remove_element_from_distrib(flattened_distrib, cdf_idx)
+					cdf = Graph.__compute_cdf(flattened_distrib)
+		return True
+
 
 	def get_graph_at_time(self, time):
 		nodes_ids = self.__nodes_time_index.query(time)

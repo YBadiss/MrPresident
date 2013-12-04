@@ -34,9 +34,11 @@ class Node:
 			self.r = True
 		return a,b
 
+	# O(Node.h)
 	def replace_contacts(self, a, b):
 		self.H = [b if val == a else val for val in self.H]
 
+	# O(Node.h)
 	def compute_communities_weights(self):
 		weights = {k:1 for k in set(self.H)}
 		for k in range(len(self.H)):
@@ -129,6 +131,7 @@ class CommunityDetector(object):
 
 		return sum([1 if self.V[node].c in matching else 0 for node in G.node.keys()]) / float(len(G.nodes()))
 
+	# O(|E| * Node.h)
 	def run(self, accuracy=False, export_graph=False, start=0, end=-1):
 		for diff,time in self.graph.get_all_diffs(start,end):
 			for n in diff["remove_nodes_from"]:
@@ -145,7 +148,6 @@ class CommunityDetector(object):
 
 			E = list(diff["add_edges_from"])
 			random.shuffle(E)
-			print len(E)
 
 			for (n,m) in E:
 				if random.random() > 0.5:
