@@ -94,6 +94,9 @@ class Graph:
 			else:
 				print "Node id", node_id, "does not exist, skipping"
 
+	def create_edges(self, nodes_list, common_metadata={}, start=0):
+		return self.create_edges_metadata(nodes_list, [{k:v for k,v in common_metadata.items()} for i in range(len(nodes_list))], start)
+
 	def create_edges_metadata(self, nodes_list, edges_metadata, start=0):
 		assert len(nodes_list) == len(edges_metadata)
 		self.__event_times.add(start)
@@ -126,6 +129,7 @@ class Graph:
 					print "Impossible to create edge", i
 			else:
 				print "Src and dest of edge", i, "do not exist, skipping"
+		return list_ids
 
 	def delete_edges(self, edges_idx, end=1):
 		assert end >= 1
